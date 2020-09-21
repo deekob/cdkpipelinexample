@@ -2,7 +2,7 @@ import * as cdk from '@aws-cdk/core';
 import * as codepipeline from '@aws-cdk/aws-codepipeline';
 import * as pipelines from "@aws-cdk/pipelines";
 import * as codepipeline_actions from "@aws-cdk/aws-codepipeline-actions";
-import { CdkPipeline } from '@aws-cdk/pipelines';
+import { CdkPipeline, SimpleSynthAction } from '@aws-cdk/pipelines';
 import { SecretValue } from '@aws-cdk/core';
 
 export class PipeLineStack extends cdk.Stack {
@@ -23,10 +23,17 @@ export class PipeLineStack extends cdk.Stack {
               owner: 'deekob',
               repo: 'cdkpipelinexample'
           }),
+
+          synthAction: SimpleSynthAction.standardNpmSynth({
+              sourceArtifact,
+              cloudAssemblyArtifact,
+
+              buildCommand: 'npm run build'
+          }),
       });
 
       // add stages here
-      
+
     
     }
 }

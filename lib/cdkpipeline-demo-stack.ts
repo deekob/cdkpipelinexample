@@ -1,9 +1,10 @@
-import * as cdk from '@aws-cdk/core';
+import { CfnOutput, Construct, Stack, StackProps } from '@aws-cdk/core';
 import * as lambda from '@aws-cdk/aws-lambda';
 import * as apigw from '@aws-cdk/aws-apigateway';
 
-export class CdkpipelineDemoStack extends cdk.Stack {
-  constructor(scope: cdk.Construct, id: string, props?: cdk.StackProps) {
+export class CdkpipelineDemoStack extends Stack {
+  public readonly urlOutput: CfnOutput;
+  constructor(scope: Construct, id: string, props?: StackProps) {
     super(scope, id, props);
 
     const welcomeLambda = new lambda.Function(this, 'helloHandler',
@@ -18,5 +19,8 @@ export class CdkpipelineDemoStack extends cdk.Stack {
     const apiHello = api.root.addResource('hello');
     apiHello.addMethod('Get', apiHelloIntegration);
    
+    this.urlOutput = new CfnOutput(this, 'Url', {
+      value: api.url,
+    });
   }
 }
