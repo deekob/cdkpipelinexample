@@ -10,7 +10,7 @@ export class CdkpipelinesDemoStage extends Stage {
     constructor(scope: Construct, id: string, props?: StageProps) {
       super(scope, id, props);
   
-      const service = new CdkpipelinesDemoStack(this, 'WebService');
+      const service = new CdkpipelineDemoStack(this, 'WebService');
       
       // Expose CdkpipelinesDemoStack's output one level higher
       this.urlOutput = service.urlOutput;
