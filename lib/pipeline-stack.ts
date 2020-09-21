@@ -5,6 +5,7 @@ import * as codepipeline_actions from "@aws-cdk/aws-codepipeline-actions";
 import { CdkPipeline, SimpleSynthAction } from '@aws-cdk/pipelines';
 import {CdkpipelinesDemoStage} from './pipeline-stage'
 import { SecretValue } from '@aws-cdk/core';
+import { ShellScriptAction } from '@aws-cdk/pipelines';
 
 export class PipeLineStack extends cdk.Stack {
     constructor(scope: cdk.Construct, id: string, props?: cdk.StackProps) {
@@ -34,10 +35,27 @@ export class PipeLineStack extends cdk.Stack {
       });
 
       // add stages here
-      pipeline.addApplicationStage(new CdkpipelinesDemoStage(this, 'UAT-Test', {
+    //   pipeline.addApplicationStage(new CdkpipelinesDemoStage(this, 'UAT-Test', {
+    //     env: { account: '978928857807', region: 'ap-southeast-2' }
+    //   }));
+
+      const uat = new CdkpipelinesDemoStage(this, 'UAT-Test', {
         env: { account: '978928857807', region: 'ap-southeast-2' }
+      });
+      const uatStage = pipeline.addApplicationStage(uat);
+      uatStage.addActions(new ShellScriptAction({
+        actionName: 'TestService',
+        useOutputs: {
+          ENDPOINT_URL: pipeline.stackOutput(uat.urlOutput),
+        },
+        commands: [
+         'curl -Ssf $ENDPOINT_URL',
+        ],
       }));
 
     
+      pipeline.addApplicationStage(new CdkpipelinesDemoStage(this, 'Prod', {
+        env: { account: '978928857807', region: 'ap-southeast-2' }
+      }));
     }
 }
