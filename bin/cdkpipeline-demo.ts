@@ -4,7 +4,7 @@ import * as cdk from '@aws-cdk/core';
 import { PipeLineStack } from '../lib/pipeline-stack';
 
 const app = new cdk.App();
-new PipeLineStack (app, 'CdkpipelineDemoStack',
+new PipeLineStack (app, 'PipeLineStack',
 {
     env: {account: '978928857807', region: 'ap-southeast-2'},
 });
