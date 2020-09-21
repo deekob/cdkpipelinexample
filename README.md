@@ -1,2 +1,2 @@
 # cdkpipelinexample
-CDK Pipeline Example written in CSharp
+CDK Pipeline Example
