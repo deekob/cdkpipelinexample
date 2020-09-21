@@ -3,6 +3,7 @@ import * as codepipeline from '@aws-cdk/aws-codepipeline';
 import * as pipelines from "@aws-cdk/pipelines";
 import * as codepipeline_actions from "@aws-cdk/aws-codepipeline-actions";
 import { CdkPipeline, SimpleSynthAction } from '@aws-cdk/pipelines';
+import {CdkpipelinesDemoStage} from './pipeline-stage'
 import { SecretValue } from '@aws-cdk/core';
 
 export class PipeLineStack extends cdk.Stack {
@@ -33,6 +34,9 @@ export class PipeLineStack extends cdk.Stack {
       });
 
       // add stages here
+      pipeline.addApplicationStage(new CdkpipelinesDemoStage(this, 'UAT-Test', {
+        env: { account: '978928857807', region: 'ap-southeast-2' }
+      }));
 
     
     }
