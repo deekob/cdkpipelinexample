@@ -35,27 +35,16 @@ export class PipeLineStack extends cdk.Stack {
       });
 
       // add stages here
-    //   pipeline.addApplicationStage(new CdkpipelinesDemoStage(this, 'UAT-Test', {
-    //     env: { account: '978928857807', region: 'ap-southeast-2' }
-    //   }));
+      
+      // stages
+      const uatStage = pipeline.addApplicationStage(new CdkpipelinesDemoStage(this, 'Test', {
+        env:{account:'978928857807', region:'ap-southeast-2'}
+    }))
 
-      const uat = new CdkpipelinesDemoStage(this, 'UAT-Test', {
-        env: { account: '978928857807', region: 'ap-southeast-2' }
-      });
-      const uatStage = pipeline.addApplicationStage(uat);
-      uatStage.addActions(new ShellScriptAction({
-        actionName: 'TestService',
-        useOutputs: {
-          ENDPOINT_URL: pipeline.stackOutput(uat.urlOutput),
-        },
-        commands: [
-         'curl -Ssf $ENDPOINT_URL',
-        ],
-      }));
-
+    uatStage.addManualApprovalAction();
     
-      pipeline.addApplicationStage(new CdkpipelinesDemoStage(this, 'Prod', {
-        env: { account: '978928857807', region: 'ap-southeast-2' }
-      }));
-    }
+    const prdStage = pipeline.addApplicationStage(new CdkpipelinesDemoStage(this, 'Prod', {
+      env:{account:'978928857807', region:'ap-southeast-2'}
+  }))
+ } 
 }
