@@ -3,6 +3,6 @@ exports.handler = async function(event) {
     return {
       statusCode: 200,
       headers: { "Content-Type": "text/plain" },
-      body: `Hello and Welcome to the CDK!\n`
+      body: `Hello - I think you have just CDK'd your first pipeline :)!\n`
     };
   };
