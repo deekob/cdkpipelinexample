@@ -21,8 +21,6 @@ export class HWNPipelineStackWithStage extends cdk.Stack {
       env: { account: "978928857807", region: "ap-southeast-1" }
    }));
 
-   UAT.addPost(new ManualApprovalStep("Approve Release to Prod"));
-  
    const PRD = pipeline.addStage(new PipelineRestApiStage(this, 'Prod', {
     env:{account:'978928857807', region:'ap-southeast-1'}
    }))
