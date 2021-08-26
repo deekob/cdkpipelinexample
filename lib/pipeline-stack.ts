@@ -17,13 +17,9 @@ export class HWNPipelineStackWithStage extends cdk.Stack {
     });
    
 
-   const UAT = pipeline.addStage(new PipelineRestApiStage(this, "Test", {
-      env: { account: "978928857807", region: "ap-southeast-1" }
-   }));
-
-   const PRD = pipeline.addStage(new PipelineRestApiStage(this, 'Prod', {
-    env:{account:'978928857807', region:'ap-southeast-1'}
-   }))
+   const UAT = pipeline.addStage(new PipelineRestApiStage(this, "Test"));
+  
+  
   
     
   }
