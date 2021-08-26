@@ -1,10 +1,11 @@
 import { CfnOutput, Construct, Stage, StageProps } from '@aws-cdk/core';
-import { CdkpipelineDemoStack } from './cdkpipeline-demo-stack';
+import { CdkpipelineDemoStack } from './cdkpipeline-rest-api-stack';
+import { HWNPipelineStackWithStage } from './pipeline-stack';
 
 /**
  * Deployable unit of web service app
  */
-export class CdkpipelinesDemoStage extends Stage {
+export class PipelineRestApiStage extends Stage {
     public readonly urlOutput: CfnOutput;
     
     constructor(scope: Construct, id: string, props?: StageProps) {
@@ -12,7 +13,5 @@ export class CdkpipelinesDemoStage extends Stage {
   
       const service = new CdkpipelineDemoStack(this, 'WebService');
       
-      // Expose CdkpipelinesDemoStack's output one level higher
-      this.urlOutput = service.urlOutput;
     }
   }

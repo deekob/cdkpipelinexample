@@ -15,13 +15,12 @@
     "@types/node": "10.17.27",
     "jest": "^26.4.2",
     "ts-jest": "^26.2.0",
-    "ts-node": "^8.1.0",
+    "ts-node": "^9.0.0",
     "typescript": "~3.9.7"
   },
   "dependencies": {
-    "@aws-cdk/aws-apigateway": "^1.63.0",
-    "@aws-cdk/aws-codepipeline": "^1.63.0",
-    "@aws-cdk/aws-codepipeline-actions": "^1.63.0",
+    "@aws-cdk/aws-apigateway": "^1.119.0",
+    "@aws-cdk/aws-codepipeline": "^1.119.0",
     "@aws-cdk/aws-lambda": "^1.119.0",
     "@aws-cdk/core": "^1.119.0",
     "@aws-cdk/pipelines": "^1.119.0",
