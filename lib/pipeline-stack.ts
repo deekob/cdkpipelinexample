@@ -18,9 +18,12 @@ export class HWNPipelineStackWithStage extends cdk.Stack {
    
 
    const UAT = pipeline.addStage(new PipelineRestApiStage(this, "Test"));
-  
-  
-  
+
+   UAT.addPost(new ManualApprovalStep("Approve release to prod"));
+
+   const Prod = pipeline.addStage(new PipelineRestApiStage(this, "Prod"));
+
+   
     
   }
 }
