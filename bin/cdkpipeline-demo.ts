@@ -5,6 +5,6 @@ import { HWNPipelineStackWithStage} from '../lib/pipeline-stack';
 const app = new cdk.App();
  new HWNPipelineStackWithStage (app, 'HWNPipeLineStack',
  {
-     env: {account: '978928857807', region: 'ap-southeast-1'},
+     env: {account: 'ACCNUM', region: 'ap-southeast-1'},
  });
 app.synth();
